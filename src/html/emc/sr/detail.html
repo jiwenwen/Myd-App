@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../../../images/favicon.ico" />
+		<link rel="bookmark" href="../../../images/favicon.ico" type="image/x-icon"/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="../../../css/emc/detail.css" />
+	</head>
+	<body>
+	<div id="mydApp" class="myd-con">
+		<!--header-->
+		<div class="header">
+			<div class="header-content clearfix">
+				<!--<div class="header-left" v-on:click="goBack">
+					<img src="../../../images/emc/list/return.png">
+					<span>返回</span>
+				</div>-->
+				<div class="header-middle">
+					<span>调查详情</span>
+				</div>
+			</div>
+	    </div>
+		<div class="content">
+			<div class="feedback">
+				<div class="fbtop">
+					<div class="clearfix">
+						<div class="tipType">
+							<span>客户反馈</span>
+							<!-- <span></span> -->
+						</div>
+						<div class="tipOwner">
+							<div class="tipOwnerName claerfix"><span></span><p>王主王主王主</p></div>
+							<div class="tipOwnerTime">07-04</div>
+						</div>
+					</div>
+				</div>
+				<div class="fbbottom">
+					<div class="bottomWhite">
+						<div class="score">
+							<div class="rating">
+								<div class="rating_item clearfix" v-for="a in starData">
+									<p v-html="a.name"></p>
+									<ul class="clearfix">
+										<template v-for="n in 5">
+											<li v-bind:type="a.id" v-bind:index="n" v-if="n <= (a.score / 5)" class="redstar"></li>
+											<li v-bind:type="a.id" v-bind:index="n" v-if="n > (a.score / 5)" class="purestar"></li>
+										</template>
+									</ul>
+									<p v-if="a.score==5">投诉</p>
+									<p v-if="a.score==10">不满意</p>
+									<p v-if="a.score==15">一般</p>
+									<p v-if="a.score==20">满意</p>
+									<p v-if="a.score==25">非常满意</p>
+								</div>
+							</div>
+							<div class="rating_line">
+								<p v-bind:style="{color:colors[0]}" v-cloak>{{colors[1]}}{{total}}</p>
+								<div class="color_contain">
+									<div class="color_white"></div>
+									<div v-bind:style="{width: total,backgroundColor:colors[0]}" class="color_on"></div>
+								</div>
+							</div>
+						</div>
+						<div class="advice">
+							<p v-html="message"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="approvalFlow">
+				<div class="fbtop">
+					<div class="clearfix">
+						<div class="tipType">
+							<span>工管中心建议</span>
+							<span>A</span>
+						</div>
+						<div class="tipOwner">
+							<!-- <div class="tipOwnerName claerfix"><span></span><p>王主王主王主</p></div> -->
+							<!-- <div class="tipOwnerTime">07-04</div> -->
+							<div class="tipOwnerEmcTime">07-04</div>
+						</div>
+					</div>
+				</div>
+				<div class="fbbottom">
+					<div class="bottomWhite">
+						<div class="advice">
+							<p v-html="message"></p>
+						</div>
+						<div class="image">
+							<ul class="clearfix">
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+						<div class="dealTime clearfix">
+							<p>处理时间</p>
+							<p>2017-07-16</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="approvalFlow">
+				<div class="fbtop">
+					<div class="clearfix">
+						<div class="tipType">
+							<span>项目经理建议</span>
+							<!-- <span></span> -->
+						</div>
+						<div class="tipOwner">
+							<div class="tipOwnerName claerfix"><span></span><p>王主王主王主</p></div>
+							<div class="tipOwnerTime">07-04</div>
+						</div>
+					</div>
+				</div>
+				<div class="fbbottom">
+					<div class="bottomWhite">
+						<div class="advice">
+							<p v-html="message"></p>
+						</div>
+						<div class="image" style="display:none;">
+							<ul class="clearfix">
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+						<div class="dealTime clearfix" style="display:none;">
+							<p>处理时间</p>
+							<p>2017-07-16</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="submitAdvice">
+				<p>工管中心建议   <span>(必填)</span></p>
+				<div class="level">
+					<p>反馈等级</p>
+					<ul>
+						<li value="a">A</li>
+						<li value="b">B</li>
+						<li value="c" class="levelCssc">C</li>
+					</ul>
+					<span></span>
+				</div>
+				<div class="note">
+					<textarea name="note" placeholder="请输入具体建议"></textarea>
+				</div>
+				<div class="updatePhoto">
+					<div class="photoHeader">
+						<span>上传照片</span>
+						<span></span>
+					</div>
+					<div class="imageUp">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+				</div>
+				<div class="subtn">
+					<p id="submit" v-on:click="submitAc">提&nbsp;&nbsp;&nbsp;&nbsp;交</p>
+					<p id="close">闭&nbsp;&nbsp;&nbsp;&nbsp;环</p>
+				</div>
+			</div>
+		</div>
+		<div class="bg">
+			<div class="pop_window">
+				<div>确认提交？</div>
+				<div>
+					<label>处理时限</label>
+					<input type="text" name="" value="2017-07-16" />
+				</div>
+				<div>注意：A类问题，为重大事件；信息同步发送至总裁办倪琳【】</div>
+				<div class="clearfix">
+					<p v-on:click="cancelPop">取&nbsp;&nbsp;&nbsp;消</p>
+					<p>确&nbsp;&nbsp;&nbsp;定</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+	<script type="text/javascript" src="../../../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/util.js" ></script>
+	<script type="text/javascript" src="../../../js/emc/sr/detail.js"></script>
+</html>

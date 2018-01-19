@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../../../images/favicon.ico" />
+		<link rel="bookmark" href="../../../images/favicon.ico" type="image/x-icon"　/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="../../../css/mobiscroll_date.css" />
+		<link rel="stylesheet" href="../../../css/emc/sr/index.css" />
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="mydApp">
+			<div class="header" style="display:none;">
+				<div class="header-content clearfix">
+					<!--<div class="header-left">
+						<img src="../../../images/emc/list/out.png" v-on:click="logOut" typeid="0">
+					</div>-->
+					<div class="header-middle">
+						<span>统计报表</span>
+					</div>
+					<div class="header-right">
+						<img src="../../../images/emc/sr/sr-icon.png" v-on:click="toClassify">
+					</div>
+				</div>
+			</div>
+			<div class="toClassify">
+				<img src="../../../images/emc/sr/sr-icon2.png" v-on:click="toClassify">
+			</div>
+			<div class="content">
+				<div class="f-time">
+					<input id="startTime" placeholder="起始时间" readonly="readonly" type="text" name="startTime"/>
+					<img class="t-r-icon" src="../../../images/emc/sr/t-r-icon.png" />
+					<input id="endTime" placeholder="截止时间" readonly="readonly" type="text" name="endTime"/>
+				</div>
+				<div class="f-con">
+					<ul class="con-card clearfix"><li tgType="1" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.ProjectTotal}}</div>
+							<div class="name">项目个数</div>
+						</li><li tgType="2" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.FeedbackPercent}}%</div>
+							<div class="name">反馈率</div>
+						</li><li tgType="3" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.ComplaintNum}}</div>
+							<div class="name">异常次数</div>
+						</li><li tgType="4" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.DelayNum}}</div>
+							<div class="name">延期处理</div>
+						</li><li tgType="5" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.ManualClose}}</div>
+							<div class="name">手动关闭</div>
+						</li><li tgType="6" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.CommendNum}}</div>
+							<div class="name">表扬次数</div>
+						</li></ul>
+					<div id="pie" class="con-pie">
+						
+					</div>
+				</div>
+			</div>
+			<div class="footer" >
+				<div class="footer-content clearfix">
+					<div class="footer-left">
+						<div>
+							<a href="../proList.html">
+								<img src="../../../images/emc/list/rectification.png">
+								<div >
+									<span>调查</span>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="footer-middle" v-if="role == 1">
+						<div >
+							<a href="../iai.html">
+								<img src="../../../images/emc/list/initiated.png">
+							</a>
+						</div>
+					</div>
+					<div class="footer-right selected">
+						<div>
+							<a>
+								<img src="../../../images/emc/list/report-selected.png">
+								<div>
+									<span>统计</span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/jquery/mobiscroll_date.js"></script> 
+	<script type="text/javascript" src="../../../../lib/jquery/mobiscroll.js"></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/echarts/echarts.min.js"></script>
+	<script type="text/javascript" src="../../../../lib/util.js" ></script>
+	<script type="text/javascript" src="../../../js/emc/sr/index.js"></script>
+</html>

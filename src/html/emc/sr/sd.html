@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../../../images/favicon.ico" />
+		<link rel="bookmark" href="../../../images/favicon.ico" type="image/x-icon"　/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="../../../css/emc/sr/sd.css" />
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="mydApp">
+			<div class="header" style="display:none;">
+				<div class="header-content clearfix">
+					<!--<div class="header-left" v-on:click="goBack">
+						返回
+					</div>-->
+					<div class="header-middle">
+						<span>手动关闭</span>
+					</div>
+					<div class="header-right">
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="f-title">
+					<div class="title-tip clearfix">
+						<span>手动关闭</span><span class="title-num" v-html="totalNum"></span>
+					</div>
+				</div>
+				<div class="f-con">
+					<div class="c-floor c-f-1">
+						<div id="pie1" class="c-f-pie"></div>
+					</div>
+					<div class="c-floor c-f-2">
+						<div class="c-f-title">手动关闭汇总</div>
+						<div class="c-f-table">
+							<table>
+								<tr>
+									<th style="width: 19%">分公司</th>
+									<th class="blue-bg" style="width: 27%">自动关闭</th>
+									<th class="blue-bg" style="width: 27%">处理中</th>
+									<th class="blue-bg" style="width: 27%">手动关闭</th>
+								</tr>
+								<tr v-for="report in reportList">
+									<th v-cloak>{{ report.ORGNAME }}</th>
+									<td v-cloak>{{ report.AutoClose }}</td>
+									<td v-cloak>{{ report.Handling }}</td>
+									<td v-cloak>{{ report.ManualClose }}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/echarts/echarts.min.js"></script>
+	<script type="text/javascript" src="../../../../lib/util.js" ></script>
+	<script type="text/javascript" src="../../../js/emc/sr/sd.js"></script>
+</html>

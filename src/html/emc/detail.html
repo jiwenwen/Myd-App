@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="format-detection" content="telephone=yes">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0"> 
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../../images/favicon.ico" />
+		<link rel="bookmark" href="../../images/favicon.ico" type="image/x-icon"/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/emc/detail.css" />
+		<link rel="stylesheet" href="../../css/mobiscroll_date.css" />
+	</head>
+	<body>
+	<div id="mydApp" class="myd-con">
+		<!--header-->
+		<!-- <div class="header">
+			<div class="header-content clearfix">
+				<div class="header-left" v-on:click="goBack" style="display:none;">
+					<img src="../../images/emc/list/return.png">
+					<span>返回</span>
+				</div>
+				<div class="header-middle">
+					<span>调查详情</span>
+				</div>
+			</div>
+			    </div> -->
+		<div class="content" id="wrapper">
+			<div id="scroller">
+			<div class="feedback">
+				<div class="fbtop">
+					<span></span>
+					<div class="clearfix">
+						<div class="tipType">
+							<span class="character">客户反馈</span>
+							<!-- <span></span> -->
+						</div>
+						<div class="tipOwner">
+							<a v-bind:href="'tel:'+content[0].tel"><div class="tipOwnerName claerfix"><span></span><p v-html="content[0].name"></p></div></a>
+							<div class="tipOwnerTime" v-cloak>{{rawData.Pm_Satisfaction.Feedback_Time.substring(5,10)}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="fbbottom">
+					<div class="bottomWhite">
+						<div class="score">
+							<div class="rating" v-cloak>
+								<div class="rating_item clearfix" v-for="a in starData">
+									<p v-html="a.name"></p>
+									<ul class="clearfix">
+										<template v-for="n in 5">
+											<li v-bind:type="a.id" v-bind:index="n" v-if="n <= (a.score / pico)" class="redstar"></li>
+											<li v-bind:type="a.id" v-bind:index="n" v-if="n > (a.score / pico)" class="purestar"></li>
+										</template>
+									</ul>
+									<p v-if="a.score==pico">投诉</p>
+									<p v-if="a.score==pico*2">不满意</p>
+									<p v-if="a.score==pico*3">一般</p>
+									<p v-if="a.score==pico*4">满意</p>
+									<p v-if="a.score==pico*5">非常满意</p>
+								</div>
+							</div>
+							<div class="rating_line">
+								<p v-bind:style="{color:colors[0]}" v-cloak>{{colors[1]}}{{total}}</p>
+								<div class="color_contain">
+									<div class="color_white"></div>
+									<div v-bind:style="{width: total+'%',backgroundColor:colors[0]}" class="color_on"></div>
+								</div>
+							</div>
+						</div>
+						<div class="advice">
+							<p v-html="customSuggest"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="approvalFlow" v-for="(a,index) in rawData.Satisfaction_Pmc_List">
+				<div class="fbtop">
+					<span></span>
+					<div class="clearfix">
+						<div class="tipType">
+							<span v-if="a.Role==1" class="character">工管中心建议</span>
+							<span v-if="a.Role==2" class="character">项目经理建议</span>
+							<span v-if="a.Role==3" class="character">客户反馈意见</span>
+							<span class="levelabc" v-if="rawData.Pm_Satisfaction.Grade==1&&a.Role==1">A</span>
+							<span class="levelabc" v-if="rawData.Pm_Satisfaction.Grade==2&&a.Role==1">B</span>
+							<span class="levelabc" v-if="rawData.Pm_Satisfaction.Grade==3&&a.Role==1">C</span>
+						</div>
+						<div class="tipOwner">
+							<a v-bind:href="'tel:'+a.Review_User_Tel" v-if="a.Role==2"><div class="tipOwnerName claerfix"><span></span><p v-html="a.Review_User_Name"></p></div></a>
+							<div class="tipOwnerTime" v-cloak>{{a.Audit_Date.substring(5,10)}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="fbbottom">
+					<div class="bottomWhite">
+						<div class="advice">
+							<p v-html="a.Suggestion"></p>
+						</div>
+						<div class="image" v-if="a.Attachments && a.Attachments.length>0">
+							<ul class="clearfix">
+								<template v-for="(b,index) in a.Attachments">
+									<li v-if="index<3" @click="viewImgs"><img v-bind:src="b.Doc_Path"></li>
+								</template>
+							</ul>
+						</div>
+						<!-- <div class="dealTime clearfix" v-if="status==2&&a.Role==1&&index==rawData.Satisfaction_Pmc_List.length-2">
+							<p>处理时间</p>
+							<span></span>
+							<input v-if="status==2" class="closeTime2" type="text" name="closeTime2" readonly="readonly" v-model="closeTime" />
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div class="submitAdvice" v-if="status==2&&role==1&&button_status==1">
+				<p>工管中心建议   <span><!-- (必填) --></span></p>
+				<div class="level" v-if="rawData.Pm_Satisfaction.Approve_Status == 1&&rawData.Pm_Satisfaction.Satisfaction_Status==2">
+					<p>异常等级</p>
+					<ul>
+						<li value="a" v-bind:class="{levelCssa:level[0].Active}" v-on:click="changProLev">A</li>
+						<li value="b" v-bind:class="{levelCssb:level[1].Active}" v-on:click="changProLev">B</li>
+						<li value="c" v-bind:class="{levelCssc:level[2].Active}" v-on:click="changProLev">C</li>
+					</ul>
+					<span style="display:none;"></span>
+				</div>
+				<div class="note">
+					<textarea name="note" placeholder="请输入具体建议"></textarea>
+				</div>
+				<div class="updatePhoto">
+					<div class="photoHeader">
+						<span>上传照片</span>
+						<span class="choose-photo" v-if="Imgs.length<3"></span>
+					</div>
+					<div class="imageUp">
+						<ul class="clearfix">
+							<li v-for="a in Imgs" @click="viewImgs"><i @click.stop="deletePic"></i><img v-bind:src="a.Doc_Path"></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="view">
+			<template v-for="(a,index) in viewImg">
+				<div class="touch" v-if="index==0" v-bind:style="{marginLeft:displacement + '%'}">
+					<div>
+						<div>
+							<img v-bind:src="a.Doc_Path">
+						</div>
+					</div>
+				</div>
+				<div class="touch" v-else>
+					<div>
+						<div>
+							<img v-bind:src="a.Doc_Path">
+						</div>
+					</div>
+				</div>
+			</template>
+		</div>
+		<div class="subtn" v-if="status==2&&role==1&&button_status==1">
+			<p id="submit" v-on:click="submitAc">提&nbsp;&nbsp;&nbsp;&nbsp;交</p>
+			<p id="close" v-on:click="forceClose">闭&nbsp;&nbsp;&nbsp;&nbsp;环</p>
+		</div>
+		<div class="colbtn" @click="closeAlready" v-if="role==1&&status==4&&rawData.Pm_Satisfaction.Approve_Status==4&&rawData.Pm_Satisfaction.Satisfaction_Status!=1">关&nbsp;&nbsp;&nbsp;&nbsp;闭</div>
+		<div class="colbtn" @click="closesoftRepeat" v-if="role==1&&status==3&&rawData.Pm_Satisfaction.Approve_Status==0&&rawData.Pm_Satisfaction.Satisfaction_Status==5">重&nbsp;&nbsp;&nbsp;&nbsp;发</div>
+		<div class="bg">
+			<div class="pop_window">
+				<div>确认提交？</div>
+				<div>
+					<label>处理时限</label>
+					<!-- <input v-if="rawData.Satisfaction_Pmc_List.length==0" type="text" class="closeTime1" name="closeTime1" v-model="closeTime" /> -->
+					<input type="text" class="closeTime1" name="closeTime1" v-model="closeTime" />
+				</div>
+				<div></div>
+				<!-- <div>注意：A类问题，为重大事件；信息同步发送至总裁办【倪琳】</div> -->
+				<div class="clearfix">
+					<p v-on:click="cancelPop">取&nbsp;&nbsp;&nbsp;消</p>
+					<p v-on:click="submitToPM">确&nbsp;&nbsp;&nbsp;定</p>
+				</div>
+			</div>
+			<div class="pop_window1">
+				<div>是否发送短信</div>
+				<div>
+					感谢您百忙之中参与“<span v-html="rawData.Pm_Satisfaction.project_name"></span>”的满意度调查。针对您提供的改进建议：<span style="color:red;" v-html="rawData.Pm_Satisfaction.Suggestion"></span> 我们给予的解决措施是：<span style="color:green;" v-html="closeReason"></span> 若有其他疑问，请致电总部客服：18550501935 处理时间：<span v-html="closeTime" style="background:#CCC;color:#FFF;"></span>
+				</div>
+				<div class="clearfix">
+					<p v-on:click="closeForce">否</p>
+					<p v-on:click="closeSoft">是</p>
+				</div>
+				<span v-on:click="cancelPop1"></span>
+			</div>
+		</div>
+		<div class="loading">
+		    <div class="loading-content">Loading...</div>
+		</div>
+		<div class="submit-cover">
+			<div class="cover-inner load5">
+				<div class="loader">Loading...</div>
+			</div>
+		</div>
+	</div>
+	</body>
+	<script type="text/javascript" src="../../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../lib/iscroll.js" ></script>
+	<script type="text/javascript" src="../../../lib/jquery/mobiscroll_date.js" ></script>
+	<script type="text/javascript" src="../../../lib/jquery/mobiscroll.js" ></script>
+	<script type="text/javascript" src="../../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript" src="../../../lib/util.js" ></script>
+	<script type="text/javascript" src="../../js/emc/detail.js"></script>
+</html>

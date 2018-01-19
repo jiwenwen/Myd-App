@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../../images/favicon.ico" />
+		<link rel="bookmark" href="../../images/favicon.ico" type="image/x-icon"　/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/pm/detail.css" />
+	</head>
+	<body>
+	<div id="mydApp">
+		<!--header-->
+		<div class="header" style="display: none;">
+			<div class="header-content clearfix">
+				<!--<div class="header-left" v-on:click="goBack">
+					<img src="../../images/emc/list/return.png">
+					<span>返回</span>
+				</div>-->
+				<div class="header-middle">
+					<span>调查详情</span>
+				</div>
+			</div>
+		</div>
+		<!--content-->
+		<div class="detail">
+			<div class="detail-content">
+				<div class="detail-item custom">
+					<div class="detail-first clearfix">
+						<div class="bar"></div>
+						<div class="detail-left">
+							<span>客户反馈</span>
+						</div>
+						<div class="detail-right">
+							<div>
+								<a v-bind:href="pmSatisfaction.Tel" class="clearfix">
+									<img src="../../images/pm/detail/phone.png">
+									<span>{{pmSatisfaction.contact_person}}</span>
+								</a>
+							</div>
+							<div v-if="pmSatisfaction.Feedback_Time">
+								<span>{{pmSatisfaction.Feedback_Time.substr(5,5)}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="detail-second">
+						<div class="score">
+							<div class="rating">
+								<div class="rating_item clearfix" v-for="message in starData">
+									<p v-html="message.name"></p>
+									<ul class="clearfix">
+										<template v-for="n in 5">
+											<li v-bind:type="message.Evaluate_Id" v-bind:index="n"  v-if="n <= (message.Score / pico)" class="redstar"></li>
+											<li v-bind:type="message.Evaluate_Id" v-bind:index="n"  v-if="n > (message.Score / pico)" class="purestar"></li>
+										</template>
+									</ul>
+									<template v-if="message.Score==pico"><p>投诉</p></template>
+									<template v-if="message.Score==pico*2"><p>不满意</p></template>
+									<template v-if="message.Score==pico*3"><p>一般</p></template>
+									<template v-if="message.Score==pico*4"><p>满意</p></template>
+									<template v-if="message.Score==pico*5"><p>非常满意</p></template>
+								</div>
+							</div>
+							<div class="rating_line">
+								<p v-bind:style="{color:colors[0]}" v-cloak>{{colors[1]}}{{total}}</p>
+								<div class="color_contain">
+									<div class="color_white"></div>
+									<div v-bind:style="{width: total+'%',backgroundColor:colors[0]}" class="color_on"></div>
+								</div>
+							</div>
+							<div class="advice">
+								<span>{{pmSatisfaction.Suggestion}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<template v-for="message in recordList">
+					<div class="detail-item emc" v-if="message.Role==1">
+						<div class="detail-first clearfix">
+							<div class="bar"></div>
+							<div class="detail-left">
+								<span>工管中心建议</span>
+							</div>
+							<div class="detail-right">
+								<div>
+									<a v-bind:href="message.Review_User_Tel" class="clearfix">
+										<img src="../../images/pm/detail/phone.png">
+										<span>{{message.Review_User_Name}}</span>
+									</a>
+								</div>
+								<div v-if="message.Audit_Date">
+									<span>{{message.Audit_Date.substr(5,5)}}</span>
+								</div>
+							</div>
+						</div>
+						<div class="detail-second">
+						<span>
+							{{message.Suggestion}}
+						</span>
+							<div class="img-group" >
+								<ul class="clearfix">
+									<template v-for="imggroup in message.Attachments">
+										<li v-on:click="imgChange">
+											<img v-bind:src="imggroup.Doc_Path">
+										</li>
+									</template>
+
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="detail-item pm" v-if="message.Role==2">
+						<div class="detail-first clearfix">
+							<div class="bar"></div>
+							<div class="detail-left">
+								<span>项目经理建议</span>
+							</div>
+							<div class="detail-right">
+								<div>
+									<span>{{message.Audit_Date.substr(5,5)}}</span>
+								</div>
+							</div>
+						</div>
+						<div class="detail-second">
+						<span>
+							{{message.Suggestion}}
+						</span>
+						</div>
+					</div>
+				</template>
+
+				<div class="form" v-if="role==2&&status==1">
+					<div class="form-title clearfix">
+						<div></div>
+						<div>
+							<span>项目经理</span>
+						</div>
+						<div v-if="remainingDays>=0" class="undelay">
+							<img src="../../images/pm/list/time.png">
+							<span>剩余{{remainingDays}}天</span>
+						</div>
+						<div v-if="remainingDays<0" class="delay">
+							<img src="../../images/pm/list/time1.png">
+							<span>延期{{Math.abs(remainingDays)}}天</span>
+						</div>
+
+					</div>
+					<div class="form-content">
+						<textarea placeholder="请输入解决措施及结果描述"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-button" v-on:click="submit" v-if="role==2&&status==1">
+			<span>提交</span>
+		</div>
+		<!--loading-->
+		<div class="loading">
+			<div class="loading-content">Loading...</div>
+		</div>
+		<div class="submit-cover">
+			<div class="cover-inner load5">
+				<div class="loader">Loading...</div>
+			</div>
+		</div>
+		<!--轮播-->
+		<div class="view">
+			<template v-for="(a,index) in viewdata">
+				<div class="touch" v-if="index==0" v-bind:style="{marginLeft:displacement + '%'}">
+					<div v-on:click="hideImg">
+						<div>
+							<img v-bind:src="a.path">
+						</div>
+					</div>
+				</div>
+				<div class="touch" v-else>
+					<div v-on:click="hideImg">
+						<div>
+							<img v-bind:src="a.path">
+						</div>
+					</div>
+				</div>
+			</template>
+		</div>
+	</div>
+		
+	</body>
+	<script type="text/javascript" src="../../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript" src="../../../lib/util.js" ></script>
+	<script type="text/javascript" src="../../js/pm/detail.js"></script>
+</html>

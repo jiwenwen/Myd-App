@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../../images/favicon.ico"/>
+		<link rel="bookmark" href="../../images/favicon.ico" type="image/x-icon"/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../../css/base.css"/>
+		<link rel="stylesheet" href="../../css/emc/list.css"/>
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+	<div id="mydApp" class="myd-con">
+		<!-- <div class="header">
+			<div class="header-content clearfix">
+				<div class="header-middle">
+					<template v-if="status==1">
+						<span>已发</span>
+					</template>
+					<template v-if="status==2">
+						<span>待处理</span>
+					</template>
+					<template v-if="status==3">
+						<span>处理中</span>
+					</template>
+					<template v-if="status==4">
+						<span>已闭环</span>
+					</template>
+				</div>
+				<div class="header-right">
+					<img src="../../images/emc/list/info.png" v-on:click="proInfo">
+				</div>
+			</div>
+		</div> -->
+		<!--tab标签-->
+		<div class="project_detail">
+			<img src="../../images/emc/list/info2.png" v-on:click="proInfo">
+		</div>
+		<div class="tab">
+			<div class="tab-content clearfix">
+				<div class="tab-first">
+					<span>{{initProInfo.project_name}}</span>
+				</div>
+				<div class="tab-second clearfix">
+					<span>{{(initProInfo.progress*100).toFixed(0)}}%</span>
+					<span>{{initProInfo.construction_status}}</span>
+				</div>
+			</div>
+		</div>
+		<!--content-->
+		<div class="detail" id="wrapper">
+			<div id="scroller" class="detail-content">
+				<div class="detail-item line-wrapper" v-for="message in listInfo" v-on:click="enterDetail" v-bind:satisId="message.Satisfaction_Id" v-bind:pjId="initProInfo.project_id">
+					<div class="item-top clearfix">
+						<div class="item-left">
+							<template v-if="message.Progress<1">
+								<span>施工</span>
+							</template>
+							<template v-if="message.Progress==1">
+								<span>竣工</span>
+							</template>
+						</div>
+						<div class="item-right">
+							<div class="detail-top clearfix">
+								<div class="detail-left clearfix">
+									<span>{{message.Satisfaction_Code}}</span>
+								</div>
+								<template  v-if="status!=1">
+									<template v-if="message.Satisfaction_Status!=1">
+										<div class="detail-right fraction red clearfix">
+											<span>{{message.Result}}</span>
+											<span>分</span>
+										</div>
+									</template>
+									<template v-if="message.Satisfaction_Status==1">
+										<div class="detail-right fraction green clearfix">
+											<span>{{message.Result}}</span>
+											<span>分</span>
+										</div>
+									</template>
+								</template>
+							</div>
+							<div class="detail-bottom clearfix">
+								<div class="detail-left clearfix">
+									<template v-if="message.Approve_Status==6&&message.Satisfaction_Status!=1||message.Approve_Status==7&&message.Satisfaction_Status!=1">
+										<span>{{message.Create_User_Name}}</span>
+									</template>
+									<template v-if="message.Approve_Status==1&&status!=1||message.Approve_Status==4&&status!=1||message.Satisfaction_Status==5&&status!=1||status==1||message.Approve_Status==8">
+										<span>{{message.contact_person}}</span>
+									</template>
+									<template v-if="message.Approve_Status==3&&status!=1||message.Approve_Status==2&&status!=1||message.Approve_Status==5&&status!=1">
+										<span>{{message.manager}}</span>
+									</template>
+									<template v-if="status==2||status==4">
+										<div class="detail-right time1 clearfix" v-if="message.Create_Date">
+											<span>{{message.Create_Date.substr(5,5)}}</span>
+										</div>
+									</template>
+									<template v-if="status==1">
+										<div class="detail-right time2">
+											<span><img src="../../images/pm/list/time1.png"></span>
+											<span>已发出{{Math.abs(message.sendTime)}}天</span>
+										</div>
+									</template>
+									<template v-if="status==3">
+										<template v-if="message.dayLeft<0">
+											<div class="detail-right time3">
+												<span><img src="../../images/pm/list/time1.png"></span>
+												<span>超时{{Math.abs(message.dayLeft)}}天</span>
+											</div>
+										</template>
+										<template v-if="message.dayLeft>=0">
+											<div class="detail-right time4">
+												<span><img src="../../images/pm/list/time.png"></span>
+												<span>处理{{Math.abs(message.dayLeft)}}天</span>
+											</div>
+										</template>
+									</template>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="item-bottom clearfix">
+						<div class="item-left">
+							<span>项目进度：</span>
+							<span>{{(message.Progress*100).toFixed(0)}}%</span>
+						</div>
+						<div class="item-right">
+							<div class="state">
+								<span v-if="message.Approve_Status==3"><img src="../../images/emc/list/state3.png"></span>
+								<span v-if="message.Approve_Status==1"><img src="../../images/emc/list/state1.png"></span>
+								<span v-if="message.Approve_Status==5"><img src="../../images/emc/list/state5.png"></span>
+								<span v-if="message.Approve_Status==4&&message.Satisfaction_Status==3"><img src="../../images/emc/list/state6.png"></span>
+								<span v-if="message.Approve_Status==6&&message.Satisfaction_Status!=1||message.Approve_Status==8"><img src="../../images/emc/list/state4.png"></span>
+							</div>
+							<div class="way">
+								<span v-if="message.Source_Type==1"><img src="../../images/emc/list/way1.png"></span>
+								<span v-if="message.Source_Type==2"><img src="../../images/emc/list/way2.png"></span>
+								<span v-if="message.Source_Type==3"><img src="../../images/emc/list/way3.png"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--loading-->
+		<div class="loading">
+			<div class="loading-content">Loading...</div>
+		</div>
+		<div class="submit-cover">
+			<div class="cover-inner load5">
+				<div class="loader">Loading...</div>
+			</div>
+		</div>
+		<!--项目信息弹出-->
+		<div class="pro-info">
+			<div class="pro-header">
+				<div class="header-middle">
+					<span>基本信息</span>
+				</div>
+				<div class="header-right" v-on:click="returnBack">
+					<span>×</span>
+				</div>
+			</div>
+			<div class="pro-con">
+				<div>
+					<span class="title">单位名称</span>
+					<ul class="term-ul">
+						<li>
+							<label>单位名称</label>
+							<span>{{projectInfo.unit_name}}</span>
+						</li>
+						<li>
+							<label>联系人</label>
+							<span>{{projectInfo.contact_person}}</span>
+						</li>
+
+						<li>
+							<label>联系方式</label>
+							<span>{{projectInfo.contact_tel}}</span>
+						</li>
+
+					</ul>
+				</div>
+				<div>
+					<span class="title">项目信息</span>
+					<ul class="term-ul">
+						<li>
+							<label>项目名称</label>
+							<span>{{projectInfo.project_name}}</span>
+						</li>
+						<li>
+							<label>所属部门</label>
+							<span>{{projectInfo.orgname}}</span>
+						</li>
+						<li>
+							<label>项目经理</label>
+							<span>{{projectInfo.fullname}}</span>
+
+						<li>
+							<label>联系方式</label>
+							<span>{{projectInfo.mobile}}</span>
+						</li>
+						<li>
+							<label>开竣工时间</label>
+							<span>{{startTime}}{{endTime}}</span>
+						</li>
+						<li>
+							<label>项目进度</label>
+							<span>{{projectInfo.pm_progress*100}}%</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../lib/iscroll.js" ></script>
+	<script type="text/javascript" src="../../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript" src="../../../lib/util.js" ></script>
+	<script type="text/javascript" src="../../js/yx/list.js"></script>
+	</body>
+
+</html>

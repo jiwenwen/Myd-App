@@ -1,0 +1,238 @@
+@charset "utf-8";
+
+.mydApp{
+	position: relative;
+    width: 100%;
+    min-height: 100%;
+}
+
+.header{
+    position: absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:3.67rem;
+    font-size: 17px;
+    color: #A28835;
+    letter-spacing: 0.28px;
+    line-height:3.67rem;
+    background: #FFFFFF;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.15);
+}
+
+.header a span{
+    display:block;
+    position: absolute;
+    right:6.5%;
+    top:0.96rem;
+    width:5.5rem;
+    height:1.75rem;
+    background:url("../../images/custom/call.png") no-repeat 0 0;
+    background-size:5.5rem 1.75rem;
+}
+
+.main{
+    position: absolute;
+    width:100%;
+    overflow-y: auto;
+    top:3.67rem;
+    bottom:4.17rem;
+}
+
+.main .proj{
+    width:100%;
+    height:5rem;
+    padding:1.25rem 6.5%;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(209,192,138,0.25);
+}
+
+.main .proj .proj_name{
+    max-width:69%;
+    padding:0 1rem;
+    height:2.5rem;
+    line-height:2.5rem;
+    text-align:center;
+    background:#D1C28A;
+    border-radius:20px;
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0.23px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+    float:left;
+}
+
+.main .proj .proj_stage{
+    width:4.17rem;
+    height:1.75rem;
+    display:block;
+    float:right;
+    margin:0.375rem 0 0 0;
+    background:url("../../images/custom/middle.png") no-repeat 0 0;
+    background-size:cover;
+}
+
+.main .proj .proj_prec{
+    display:block;
+    height:2.5rem;
+    padding:0 0 0 0.2rem;
+    line-height:2.5rem;
+    float:right;
+    font-size: 12px;
+    color: #D1C28A;
+    letter-spacing: 0.28px;
+}
+
+.score{
+    width:100%;
+}
+
+.score .rating{
+    width:100%;
+    /*height:17.08rem;*/
+    padding:1.04rem 6.5%;
+    border-bottom: 1px solid rgba(209,192,138,0.25);
+}
+
+.score .rating .rating_item{
+    width:100%;
+    height:2.71rem;
+    margin-top:1.04rem;
+}
+
+.score .rating .rating_item p:first-child{
+    height:1.67rem;
+    font-size: 14px;
+    color: #666666;
+    letter-spacing: 0.28px;
+    line-height:1.67rem;
+    float:left;
+    width: 6rem;
+}
+
+.score .rating .rating_item p:last-child{
+    height:1.67rem;
+    font-size: 14px;
+    color: #999999;
+    letter-spacing: 0.28px;
+    line-height:1.67rem;
+    float:right;
+}
+
+.score .rating .rating_item ul{
+    float:left;
+    margin-left:0.2rem;
+}
+
+.score .rating .rating_item ul li{
+    width:1.67rem;
+    height:1.67rem;
+    margin:0 0.6rem;
+    float:left;
+    background-size:cover;
+}
+
+.redstar{
+    background:url("../../images/custom/star-full.png") no-repeat 0 0;
+}
+
+.purestar{
+    background:url("../../images/custom/star-empty.png") no-repeat 0 0;
+}
+
+.score .rating_line{
+    width:100%;
+    height:5rem;
+    border-bottom: 1px solid rgba(209,192,138,0.25);
+}
+
+.score .rating_line p{
+    width:100%;
+    height:2.5rem;
+    padding:0 6.5%;
+    line-height:2.5rem;
+    font-size: 12px;
+    color: #1F8349;
+    text-align: right;
+    letter-spacing: 0.28px;
+}
+
+.score .rating_line .color_contain{
+    position:relative;
+    width:100%;
+    padding:0 6.5%;
+    height:1.25rem;
+    box-sizing: border-box;
+}
+
+.score .rating_line .color_contain>div{
+    /*position:absolute;*/
+    border-radius:1.25rem;
+    box-sizing: border-box;
+    height:1.25rem;
+}
+
+.score .rating_line .color_white{
+    width:100%;
+    background: #FFFFFF;
+    border: 1px solid #CABA86;
+}
+
+.score .rating_line .color_on{
+    /*width:80%;*/
+    position:relative;
+    top:-1.25rem;
+    /*background: #1E8349;*/
+    transition: all 0.3s;
+}
+
+.advice{
+    width:100%;
+    padding:0.83rem 6.5% 0 6.5%;
+}
+
+.advice .advice_content{
+    border:0;
+    resize:none;
+    width:100%;
+    min-height:12rem;
+    font-size: 14px;
+    letter-spacing: 0.28px;
+}
+
+.sub_btn{
+    position: absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:4.17rem;
+    line-height:4.17rem;
+    text-align:center;
+    font-size: 17px;
+    color: #FFFFFF;
+    background: #D1C08A;
+}
+
+@media screen and (max-width: 330px) {
+    .score .rating .rating_item ul li{
+        margin: 0 0.3rem;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .score .rating .rating_item ul li{
+        margin: 0 0.9rem;
+    }
+    .score .rating .rating_item ul{
+        margin-left:1.18rem;
+    }
+}
+
+.shixiao{
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 8rem;
+    text-align: center;
+}

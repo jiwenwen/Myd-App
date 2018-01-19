@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../../../images/favicon.ico" />
+		<link rel="bookmark" href="../../../images/favicon.ico" type="image/x-icon"　/>
+		<title>满意度分布</title>
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="../../../css/emc/sr/pjPie.css" />
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="mydApp">
+			<div class="header" style="display: none;">
+				<div class="header-content clearfix">
+					<!--<div class="header-left" v-on:click="goBack">
+						返回
+					</div>-->
+					<div class="header-middle">
+						<span>满意度分布</span>
+					</div>
+					<div class="header-right">
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<ul class="f-tap">
+					<li v-on:click="changeTap" type="1" class="active">表单</li><li v-on:click="changeTap" type="2">柱状图</li>
+				</ul>
+				<div class="f-con">
+					<div class="con-table">
+						<table>
+							<tr>
+								<th style="width: 18%">分公司</th>
+								<th class="blue-bg" style="width: 18%">非常满意</th>
+								<th class="blue-bg" style="width: 16%">满意</th>
+								<th class="blue-bg" style="width: 16%">一般</th>
+								<th class="blue-bg" style="width: 16%">不满意</th>
+								<th class="blue-bg" style="width: 16%">投诉</th>
+							</tr>
+							<tr v-for="report in reportList">
+								<th v-cloak>{{ report.CompanyName }}</th>
+								<td v-cloak>{{ report.VerySatisfied }}</td>
+								<td v-cloak>{{ report.Satisfied }}</td>
+								<td v-cloak>{{ report.Commonly }}</td>
+								<td v-cloak>{{ report.Dissatisfied }}</td>
+								<td v-cloak>{{ report.Complaint }}</td>
+							</tr>
+						</table>
+					</div>
+					<div id="line" class="con-line">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/echarts/echarts.min.js"></script>
+	<script type="text/javascript" src="../../../../lib/util.js" ></script>
+	<script type="text/javascript" src="../../../js/emc/sr/pjPie.js"></script>
+</html>

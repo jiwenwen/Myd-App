@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<link rel="shortcut icon" href="../../../images/favicon.ico"/>
+	<link rel="bookmark" href="../../../images/favicon.ico" type="image/x-icon"/>
+	<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+	<link rel="stylesheet" href="../../../css/base.css"/>
+	<link rel="stylesheet" href="../../../css/emc/sr/proList.css"/>
+</head>
+<body>
+<div id="mydApp" class="myd-con">
+	<!--header-->
+	<div class="header" style="display:none;">
+		<div class="header-content clearfix">
+			<!--<div class="header-left">
+				<img src="../../../images/emc/list/return.png" typeid="0" @click="history.back()">
+			</div>-->
+			<div class="header-middle">
+				<span>满意度调查</span>
+			</div>
+		</div>
+	</div>
+	<!--退出-->
+	<div class="out">
+		<span>退出登录</span>
+	</div>
+	<!--content-->
+	<div class="detail">
+		<div class="detail-content list-first">
+			<div class="detail-item" v-for="message in rawData" v-bind:pjId="message.project_code">
+				<div class="detail-first">
+					<span v-html="message.project_code"></span>
+					<span style="display:none;"></span>
+				</div>
+				<div class="detail-second">
+					<span v-html="message.project_name"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="black"></div>
+	<!--loading-->
+	<div class="submit-cover">
+		<div class="cover-inner load5">
+			<div class="loader">Loading...</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="../../../../lib/jquery/jquery.min.js" ></script>
+<script type="text/javascript" src="../../../../lib/vue/dist/vue.min.js" ></script>
+<script type="text/javascript" src="../../../../lib/vue/dist/vue-resource.min.js" ></script>
+<script type="text/javascript" src="../../../../lib/util.js" ></script>
+<script type="text/javascript" src="../../../js/emc/sr/proList.js"></script>
+</body>
+
+</html>

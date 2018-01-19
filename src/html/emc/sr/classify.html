@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../../../images/favicon.ico" />
+		<link rel="bookmark" href="../../../images/favicon.ico" type="image/x-icon"　/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="../../../css/emc/sr/classify.css" />
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="mydApp">
+			<div class="header" style="display:none;">
+				<div class="header-content clearfix">
+					<!--<div class="header-left" v-on:click="goBack">
+						返回
+					</div>-->
+					<div class="header-middle">
+						<span>分类查询</span>
+					</div>
+					<div class="header-right">
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="c-left">
+					<ul>
+						<!--<li class="active" cType="1" v-on:click="changeTap">分公司</li>-->
+						<li class="active" cType="2" v-on:click="changeTap">项目经理</li>
+					</ul>
+				</div>
+				<div class="c-right">
+					<div class="search">
+						<input v-model="sItem" placeholder="搜索"/>
+					</div>
+					<div class="total" v-cloak>全部({{totalNum}})</div>
+					<div class="list">
+						<ul>
+							<template v-for="manager in managerList">
+								<li @click="getDetail" :itemId="manager.USERID">{{manager.Manager}}</li>
+							</template>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="submit-cover">
+				<div class="cover-inner load5">
+					<div class="loader">Loading...</div>
+				</div>
+			</div>
+			<div class="show-detail">
+				<div class="show-inner">
+					<i class="s-close" @click="closeShow">×</i>
+					<div class="s-title" v-cloak>{{managerDetail.FULLNAME}}({{managerDetail.ORGNAME}})</div>
+					<div class="s-content" v-cloak>
+						<table>
+							<tr>
+								<th>项目数：</th>
+								<td>{{managerDetail.ProjectTotal}}</td>
+							</tr>
+							<tr>
+								<th>表扬数：</th>
+								<td>{{managerDetail.CommendNum}}</td>
+							</tr>
+							<tr>
+								<th>投诉数：</th>
+								<td>{{managerDetail.ComplaintNum}}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/echarts/echarts.min.js"></script>
+	<script type="text/javascript" src="../../../../lib/util.js" ></script>
+	<script type="text/javascript" src="../../../js/emc/sr/classify.js"></script>
+</html>

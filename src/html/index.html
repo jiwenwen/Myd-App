@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../images/favicon.ico" />
+		<link rel="bookmark" href="../images/favicon.ico" type="image/x-icon"　/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../css/base.css" />
+		<style>
+			.switch{
+				display:none;
+				width:100%;
+				height:100%;
+				position:absolute;
+				left:0;
+				top:0;
+				background:rgba(0,0,0,1);
+				z-index:1;
+			}
+			.switch>ul{
+				width:80%;
+				margin-left:10%;
+				box-sizing: border-box;
+				border:1px solid #a98219;
+				padding:30px 20px;
+				padding-bottom:45px;
+				margin-top:30%;
+				background:rgba(205, 155, 29, 0.1);
+				border-radius:5px;
+			}
+			.switch>ul>li{
+				width:100%;
+				height:50px;
+				border:2px solid #a98219;
+				line-height:50px;
+				box-sizing:border-box;
+				margin-top:15px;
+				background:rgba(205, 155, 29, 0.2);
+				color:#FFF;
+				text-align:center;
+				border-radius:5px;
+			}
+			.switch>ul>li>p{
+				display:inline-block;
+				font-weight:500;
+				box-sizing: border-box;
+				color:#FFF;
+				font-size:16px;
+				font-weight:300;
+			}
+		</style>
+	</head>
+	<body id="mydApp">
+	<p id = "decoration" style="font-size:16px;color:#777777;padding:0.5rem 0 0 1.5%;line-height:24px;width:96%;overflow:hidden;"></p>
+	<div class="switch"></div>
+	</body>
+	<script type="text/javascript" src="../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript">
+        localStorage.setItem("isSearch",0);
+		var indexUtil = null;
+	</script>
+	<script type="text/javascript" src="../../lib/util.js" ></script>
+	<script type="text/javascript">
+		indexUtil = util;
+		$("#decoration").append("判断系统平台:");
+		if(!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)){
+			$("#decoration").append("IOS<br />");
+			$("#decoration").append("获取Token:");
+			getToken();
+		}else{
+			$("#decoration").append("Android<br />");
+			var lastTime = window.GMQuality.getCurrentTime();//获取上一次进入的时间
+			var currentTime = new Date().getTime();//获取当前时间
+			if((currentTime-lastTime)>=5000){
+				window.GMQuality.logOut();
+			}else{
+				$("#decoration").append("获取Token:");
+				gm_getToken(window.GMQuality.getToken());
+			}
+		}
+	</script>
+</html>

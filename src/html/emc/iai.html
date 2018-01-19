@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<link rel="shortcut icon" href="../../images/favicon.ico"/>
+	<link rel="bookmark" href="../../images/favicon.ico" type="image/x-icon"/>
+	<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+	<link rel="stylesheet" href="../../css/base.css"/>
+	<link rel="stylesheet" href="../../css/emc/iai.css"/>
+	<style>
+		[v-cloak] {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="mydApp">
+		<div class="main">
+			<!--header-->
+			<div class="header" style="display:none;">
+				<div class="header-content clearfix">
+					<!--<div class="header-left">
+						<img src="../../images/emc/list/out.png" v-on:click="logOut" typeid="0">
+					</div>-->
+					<div class="header-middle">
+						<span>发起满意度调查</span>
+					</div>
+					<!--<div class="header-right">
+						<span class="close-page" v-on:click="backHistory">关闭</span>
+					</div>-->
+				</div>
+			</div>
+			<!--退出-->
+			<div class="out" v-on:click="out">
+				<span>退出登录</span>
+			</div>
+			<!--content-->
+			<div class="detail">
+				<div class="iai-con">
+					<ul class="term-ul">
+						<li>
+							<label>项目名称</label>
+							<input type="hidden" name="proId" v-model="projectPersonnelInfo.project_id" />
+							<input v-on:click="showSelect" type="text" name="proName" v-model="projectPersonnelInfo.project_name" readonly="readonly" placeholder="点击选择项目" />
+						</li>
+						<li>
+							<label>发送单位</label>
+							<input type="text" name="sendUnit" v-model="projectPersonnelInfo.unit_name" readonly="readonly" placeholder="(系统自动)" />
+						</li>
+						<li>
+							<label>发送对象</label>
+							<input type="text" name="sendPer" v-model="projectPersonnelInfo.contact_person" readonly="readonly" placeholder="(系统自动)" />
+						</li>
+						<li>
+							<label>联系方式</label>
+							<input type="text" name="mobile" v-model="projectPersonnelInfo.contact_tel" readonly="readonly" placeholder="(系统自动)" />
+						</li>
+						<li>
+							<label>满意度类型</label>
+							<template v-if="projectPersonnelInfo.SysParameterses[0]">
+								<input type="hidden" name="mydTypeId" v-model="projectPersonnelInfo.SysParameterses[0].Type_Id" >
+								<input type="text" name="mydType" v-model="projectPersonnelInfo.SysParameterses[0].Type_Name" readonly="readonly" placeholder="(系统自动)" />
+							</template>
+							<template v-else>
+								<input type="hidden" name="mydTypeId">
+								<input type="text" name="mydType" readonly="readonly" placeholder="(系统自动)" />
+							</template>
+						</li>
+					</ul>
+					<div class="term-star">
+						<div class="rating_item clearfix" v-for="a in starData">
+							<p v-html="a.Type_Name"></p>
+							<ul class="clearfix">
+								<template v-for="n in 5">
+									<li v-bind:type="a.Type_Id" v-bind:index="n" v-on:click="lightStar" v-if="n <= (a.score / 5)" class="redstar"></li>
+									<li v-bind:type="a.Type_Id" v-bind:index="n" v-on:click="lightStar" v-if="n > (a.score / 5)" class="purestar"></li>
+								</template>
+							</ul>
+							<p v-if="a.score==5">投诉</p>
+							<p v-if="a.score==10">不满意</p>
+							<p v-if="a.score==15">一般</p>
+							<p v-if="a.score==20">满意</p>
+							<p v-if="a.score==25">非常满意</p>
+						</div>
+					</div>
+					<div class="term-msg">
+						<p>改进建议或意见</p>
+						<textarea name="msg"></textarea>
+					</div>
+					<div class="term-empty">
+						<img v-on:click="backHistory" src="../../images/emc/iai/close-btn.png">
+					</div>
+				</div>
+			</div>
+			<div class="black"></div>
+			<!--footer-->
+			<div class="footer">
+				<div class="opts">
+					<a v-on:click="completeAI" class="opts-left" href="javascript:;">线下调查</a>
+					<a v-on:click="sendAI" class="opts-right" href="javascript:;">发送调查</a>
+				</div>
+			</div>
+		</div>
+		<div class="slider-select">
+			<!--header-->
+			<div class="header">
+				<div class="header-content clearfix">
+					<div class="header-left" v-on:click="hideSelect">×</div>
+					<div class="header-middle">
+						<span>选择项目</span>
+					</div>
+					<div class="header-right">
+						<img v-on:click="showSearch" src="../../images/emc/list/search.png" >
+					</div>
+					<div class="header-search clearfix">
+						<div class="search-left">
+							<div v-on:click="searchPj"><img src="../../images/emc/list/search.png"></div>
+							<div class="search-input"><input name="searchKey" v-model="searchItem" placeholder="输入项目名称/编号" onfocus="this.placeholder=''" onblur="this.placeholder='输入项目名称/编号'"></div>
+							<div v-on:click="searchDelete"><img src="../../images/emc/list/delete.png"></div>
+						</div>
+						<div class="search-right" v-on:click="cancelSearch">
+							<span>取消</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--content-->
+			<div class="detail">
+				<ul class="pro-ul">
+					<template v-for="pro in proList">
+						<li v-on:click="choosePro" v-bind:proId="pro.Project_Id" v-bind:progress="pro.Pm_Progress">
+							<label v-html="pro.Project_Code"></label>
+							<div v-html="pro.Project_Name"></div>
+						</li>
+					</template>
+				</ul>
+			</div>
+		</div>
+		<div class="submit-cover">
+			<div class="cover-inner load5">
+				<div class="loader">Loading...</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript" src="../../../lib/util.js" ></script>
+	<script type="text/javascript" src="../../js/emc/iai.js"></script>
+</body>
+</html>

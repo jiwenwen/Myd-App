@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../../../images/favicon.ico" />
+		<link rel="bookmark" href="../../../images/favicon.ico" type="image/x-icon"　/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="../../../css/emc/sr/ts.css" />
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="mydApp">
+			<div class="header" style="display:none;">
+				<div class="header-content clearfix">
+					<!--<div class="header-left" v-on:click="goBack">
+						返回
+					</div>-->
+					<div class="header-middle">
+						<span>异常次数</span>
+					</div>
+					<div class="header-right">
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="f-title">
+					<div class="title-tip clearfix">
+						<span>异常次数</span><span class="title-num" v-html="totalNum"></span>
+					</div>
+				</div>
+				<div class="f-con">
+					<ul class="con-card clearfix"><li tgType="1" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.WEEK}}<span class="unit">次</span></div>
+							<div class="name">本周异常</div>
+						</li><li tgType="2" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.MONTH}}<span class="unit">次</span></div>
+							<div class="name">本月异常</div>
+						</li><li tgType="3" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.YEAR}}<span class="unit">次</span></div>
+							<div class="name">本年异常</div>
+						</li><li tgType="4" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.Unsolved}}<span class="unit">次</span></div>
+							<div class="name">未解决</div>
+						</li><li tgType="5" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.Resolved}}<span class="unit">次</span></div>
+							<div class="name">已解决</div>
+						</li><li tgType="6" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.SeriousComplaint}}<span class="unit">次</span></div>
+							<div class="name">重大异常</div>
+						</li></ul>
+					<div class="c-floor c-f-1">
+						<div class="c-f-title">异常解决率</div>
+						<div id="pie1" class="c-f-pie"></div>
+					</div>
+					<div class="c-floor c-f-2">
+						<div class="c-f-title">异常类型</div>
+						<div id="pie2" class="c-f-pie"></div>
+					</div>
+					<!--<div class="c-floor c-f-3">
+						<div class="c-f-title">异常方式</div>
+						<div id="pie3" class="c-f-pie"></div>
+					</div>-->
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/echarts/echarts.min.js"></script>
+	<script type="text/javascript" src="../../../../lib/util.js" ></script>
+	<script type="text/javascript" src="../../../js/emc/sr/ts.js"></script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<meta name="format-detection" content="telephone=yes">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<link rel="shortcut icon" href="../../images/favicon.ico" />
+		<link rel="bookmark" href="../../images/favicon.ico" type="image/x-icon"　/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/custom/index1.css" />
+	</head>
+	<body>
+		<div id="mydApp" class="mydApp">
+			<div class="header">
+				满意度调查
+				<a href="tel:18550501935"><span></span></a>
+			</div>
+			<div class="main">
+				<div class="proj clearfix">
+					<div class="proj_name" v-bind:projectId="projectMsg.project_id" v-html="projectMsg.project_name"></div>
+					<span v-if="projectMsg.progress!=100" v-bind:style="{backgroundImage:'url(../../images/custom/middle.png)'}" class="proj_stage"></span>
+					<span v-if="projectMsg.progress==100" v-bind:style="{backgroundImage:'url(../../images/custom/over.png)'}" class="proj_stage"></span>
+					<span v-if="projectMsg.progress!=100" class="proj_prec"><span v-html="projectMsg.progress*100"></span>%</span>
+				</div>
+				<div class="solution">
+					<div class="custom">
+						<div>您的建议</div>
+						<div v-if="cuAdvice!=''" v-html="cuAdvice">梵蒂冈地方规定发给对方会高度分工的风格的梵蒂冈地方规定发给对方会高度分工的风格的风格的复古风格好方法电话费更好的防火防盗风格的复古风格好方法电话费更好的防火防盗</div>
+						<div v-else>【空】</div>
+					</div>
+					<div class="engineer">
+						<div>我们的解决措施</div>
+						<div v-if="enSolution!=''" v-html="enSolution">梵蒂冈地方规定发给对方会高度分工的风格的梵蒂冈地方规定发给对方会高度分工的风格的风格的复古风格好方法电话费更好的防火防盗风格的复古风格好方法电话费更好的防火防盗</div>
+						<div v-else>【空】</div>
+					</div>
+				</div>
+				<ul class="level clearfix">
+					<li v-on:click="changeMind" v-bind:class="{li1:level[0].Active}">不满意</li>
+					<li v-on:click="changeMind" v-bind:class="{li5:level[1].Active}">满意</li>
+				</ul>
+				<div class="advice">
+					<textarea class="advice_content" placeholder="您的建议或意见" name="advice"></textarea>
+				</div>
+			</div>
+			<div class="sub_btn" v-on:click="submit">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>
+			<div class="submit-cover">
+				<div class="cover-inner load5">
+					<div class="loader">Loading...</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../lib/jquery/jquery.min.js" ></script>
+		<script type="text/javascript" src="../../../lib/vue/dist/vue.min.js" ></script>
+		<script type="text/javascript" src="../../../lib/vue/dist/vue-resource.min.js" ></script>
+		<script type="text/javascript" src="../../../lib/util.js" ></script>
+		<script type="text/javascript" src="../../js/custom/index1.js"></script>
+	</body>
+</html>

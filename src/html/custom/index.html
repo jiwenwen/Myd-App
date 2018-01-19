@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0"> 
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../../images/favicon.ico" />
+		<link rel="bookmark" href="../../images/favicon.ico" type="image/x-icon"　/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/custom/index.css" />
+	</head>
+	<body>
+		<div id="mydApp" class="mydApp">
+			<div class="header">
+				满意度调查
+				<a href="tel:18550501935"><span></span></a>
+			</div>
+			<div class="main">
+				<div class="proj clearfix">
+					<div class="proj_name" v-bind:projectId="projectMsg.project_id" v-html="projectMsg.project_name"></div>
+					<span v-if="projectMsg.progress!=100" v-bind:style="{backgroundImage:'url(../../images/custom/middle.png)'}" class="proj_stage"></span>
+					<span v-if="projectMsg.progress==100" v-bind:style="{backgroundImage:'url(../../images/custom/over.png)'}" class="proj_stage"></span>
+					<span v-if="projectMsg.progress!=100" class="proj_prec"><span v-cloak>{{(progress*100).toFixed(0)}}</span>%</span>
+				</div>
+				<div class="score">
+					<div class="rating">
+						<div class="rating_item clearfix" v-for="a in starData">
+							<p v-html="a.name"></p>
+							<ul class="clearfix">
+								<template v-for="n in 5">
+									<li v-bind:type="a.id" v-bind:index="n" v-on:click="lightStar" v-if="n <= (a.score / pico)" class="redstar"></li>
+									<li v-bind:type="a.id" v-bind:index="n" v-on:click="lightStar" v-if="n > (a.score / pico)" class="purestar"></li>
+								</template>
+							</ul>
+							<p v-if="a.score==pico">投诉</p>
+							<p v-if="a.score==pico*2">不满意</p>
+							<p v-if="a.score==pico*3">一般</p>
+							<p v-if="a.score==pico*4">满意</p>
+							<p v-if="a.score==pico*5">非常满意</p>
+						</div>
+					</div>
+					<div class="rating_line">
+						<p v-bind:style="{color:colors[0]}" v-cloak>{{colors[1]}}{{total}}</p>
+						<div class="color_contain">
+							<div class="color_white"></div>
+							<div v-bind:style="{width: total+'%',backgroundColor:colors[0]}" class="color_on"></div>
+						</div>
+					</div>
+				</div>
+				<div class="advice">
+					<textarea class="advice_content" placeholder="您的建议或意见" name="advice"></textarea>
+				</div>
+			</div>
+			<div class="sub_btn" v-on:click="submit">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>
+			<div class="submit-cover">
+				<div class="cover-inner load5">
+					<div class="loader">Loading...</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../lib/jquery/jquery.min.js" ></script>
+		<script type="text/javascript" src="../../../lib/vue/dist/vue.min.js" ></script>
+		<script type="text/javascript" src="../../../lib/vue/dist/vue-resource.min.js" ></script>
+		<script type="text/javascript" src="../../../lib/util.js" ></script>
+		<script type="text/javascript" src="../../js/custom/index.js?v=201709070946"></script>
+	</body>
+</html>

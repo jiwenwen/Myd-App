@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../../../images/favicon.ico" />
+		<link rel="bookmark" href="../../../images/favicon.ico" type="image/x-icon"　/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="../../../css/emc/sr/yq.css" />
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="mydApp">
+			<div class="header" style="display: none;">
+				<div class="header-content clearfix">
+					<!--<div class="header-left" v-on:click="goBack">
+						返回
+					</div>-->
+					<div class="header-middle">
+						<span>延期处理</span>
+					</div>
+					<div class="header-right">
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="f-title">
+					<div class="title-tip clearfix">
+						<span>延期处理</span><span class="title-num" v-html="totalNum"></span>
+					</div>
+				</div>
+				<ul class="f-tap">
+					<li v-on:click="changeTap" type="1" class="active">表单</li><li v-on:click="changeTap" type="2">柱状图</li>
+				</ul>
+				<div class="f-con">
+					<div class="con-table">
+						<table class="table-title">
+							<tr>
+								<th style="width: 19%">分公司</th>
+								<th class="blue-bg" style="width: 27%">3天内</th>
+								<th class="blue-bg" style="width: 27%">3-5天</th>
+								<th class="blue-bg" style="width: 27%">5天及以上</th>
+							</tr>
+						</table>
+						<div class="table-content">
+							<table>
+								<tr v-for="report in reportList">
+									<th style="width: 19%" v-cloak>{{ report.ORGNAME }}</th>
+									<td style="width: 27%" v-cloak type="1" :cId="report.CompanyID" @click="toProList">{{ report.Three }}</td>
+									<td style="width: 27%" v-cloak type="2" :cId="report.CompanyID" @click="toProList">{{ report.ThreeorFive }}</td>
+									<td style="width: 27%" v-cloak type="3" :cId="report.CompanyID" @click="toProList">{{ report.Five }}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div id="line" class="con-line">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/echarts/echarts.min.js"></script>
+	<script type="text/javascript" src="../../../../lib/util.js" ></script>
+	<script type="text/javascript" src="../../../js/emc/sr/yq.js"></script>
+</html>

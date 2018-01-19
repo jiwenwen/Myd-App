@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<link rel="shortcut icon" href="../../images/favicon.ico"/>
+	<link rel="bookmark" href="../../images/favicon.ico" type="image/x-icon"/>
+	<title>首页</title>
+	<link rel="stylesheet" href="../../css/base.css"/>
+	<link rel="stylesheet" href="../../css/emc/proList.css"/>
+</head>
+<body>
+<div id="mydApp" class="myd-con" v-cloak>
+	<!--header-->
+	<div class="header" style="display:none;">
+		<div class="header-content clearfix">
+			<!--<div class="header-left">
+				<img src="../../images/emc/list/out.png" v-on:click="logOut" typeid="0">
+			</div>-->
+			<div class="header-middle">
+				<span>满意度调查</span>
+			</div>
+			<div class="header-right">
+				<img  v-on:click="searchProject" src="../../images/emc/list/search.png" >
+			</div>
+			<div class="header-search clearfix">
+				<div class="search-left">
+					<div v-on:click="searchPj"><img src="../../images/emc/list/search2.png"></div>
+					<div class="search-input"><input placeholder="输入项目名称/编号" onfocus="this.placeholder=''" onblur="this.placeholder='输入项目名称/编号'"></div>
+					<div v-on:click="searchDelete"><img src="../../images/emc/list/delete.png"></div>
+				</div>
+				<div class="search-right" v-on:click="cancelSearch">
+					<span>取消</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--退出-->
+	<div class="out" v-on:click="out">
+		<span>退出登录</span>
+	</div>
+	<!--tab标签-->
+	<div class="tab">
+		<div class="tab-content clearfix">
+			<div class="tab-first" v-on:click="tabChange" typeid="1">
+				<span>已发</span>
+			</div>
+			<div class="tab-second" v-on:click="tabChange" typeid="2">
+				<div>
+					<span class="active">待处理</span>
+					<div class="message">
+						<span  v-if="count!=0">{{count}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="tab-third" v-on:click="tabChange" typeid="3">
+				<span>处理中</span>
+			</div>
+			<div class="tab-forth" v-on:click="tabChange" typeid="4">
+				<span>已闭环</span>
+			</div>
+		</div>
+	</div>
+	<div class="top_search clearfix">
+		<div class="search_left">
+			<div class="search_input"><input placeholder="输入项目名称/编号" onfocus="this.placeholder=''" onblur="this.placeholder='输入项目名称/编号'"></div>
+			<div class="search_button" v-on:click="searchPj"><img src="../../images/emc/list/search2.png"></div>
+			<div class="search_delete" v-on:click="searchDelete"><img src="../../images/emc/list/delete.png"></div>
+		</div>
+	</div>
+	<!--content-->
+	<div class="detail" id="wrapper">
+		<div id="scroller" class="detail-content list-first">
+			<div class="detail-item" v-on:click="problemLst" v-for="message in projectLst" v-bind:pjId="message.project_id">
+				<div class="detail-first">
+					<span>{{message.project_code}}</span>
+					<span>{{message.approve_status_count}}</span>
+				</div>
+				<div class="detail-second">
+					<span>{{message.project_name}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="black"></div>
+	<!--footer-->
+	<div class="footer" >
+		<div class="footer-content clearfix">
+			<div class="footer-left">
+				<div>
+					<a href="proList.html">
+						<img src="../../images/emc/list/rectification-selected.png">
+						<div >
+							<span>调查</span>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="footer-middle" v-if="role==1">
+				<div>
+					<a href="iai.html">
+						<img src="../../images/emc/list/initiated.png">
+					</a>
+				</div>
+			</div>
+			<div class="footer-right">
+				<div>
+					<a href="sr/index.html">
+						<img src="../../images/emc/list/report.png">
+						<div>
+							<span>统计</span>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--loading-->
+	<div class="loading">
+		<div class="loading-content">Loading...</div>
+	</div>
+	<div class="submit-cover">
+		<div class="cover-inner load5">
+			<div class="loader">Loading...</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="../../../lib/jquery/jquery.min.js" ></script>
+<script type="text/javascript" src="../../../lib/iscroll.js" ></script>
+<script type="text/javascript" src="../../../lib/vue/dist/vue.min.js" ></script>
+<script type="text/javascript" src="../../../lib/vue/dist/vue-resource.min.js" ></script>
+<script type="text/javascript" src="../../../lib/util.js" ></script>
+<script type="text/javascript" src="../../js/emc/proList.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+@charset "utf-8";
+/*content*/
+.content{
+	position: absolute;
+    top: 0rem;
+    bottom: 0;
+    width: 100%;
+    overflow-y: auto;
+}
+.content .f-title{
+	position: relative;
+	padding: 15px 6.5%;
+}
+.content .f-title .title-tip{
+	padding: 0 10px;
+	background-image: -moz-linear-gradient(-135deg, #FF9E5B 0%, #EA3587 100%);
+	background-image: -o-linear-gradient(-135deg, #FF9E5B 0%, #EA3587 100%);
+	background-image: -webkit-linear-gradient(-135deg, #FF9E5B 0%, #EA3587 100%);
+	background-image: linear-gradient(-135deg, #FF9E5B 0%, #EA3587 100%);
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.25);
+	border-radius: 2px;
+    display: inline-block;
+    height: 34px;
+    line-height: 34px;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+.content .f-title .title-tip span{
+	float: left;
+	display: inline-block;
+}
+.content .f-title .title-tip .title-num{
+	margin-left: 24px;
+	font-size: 20px;
+}
+
+.content .f-tap{
+	padding: 15px 6.5%;
+	text-align: left;
+}
+.content .f-tap li{
+	display: inline-block;
+	width: 70px;
+	height: 25px;
+	line-height: 25px;
+	background: #FFFFFF;
+	border: 1px solid #D1BE8A;
+	font-size: 14px;
+	color: #D1BE8A;
+	cursor: pointer;
+	text-align: center;
+}
+.content .f-tap li:nth-child(1){
+	border-radius: 2px 0 0 2px;
+	-moz-border-radius: 2px 0 0 2px;
+	-webkit-border-radius: 2px 0 0 2px;
+}
+.content .f-tap li:nth-child(2){
+	border-radius: 0 2px 2px 0;
+	-moz-border-radius: 0 2px 2px 0;
+	-webkit-border-radius: 0 2px 2px 0;
+}
+.content .f-tap li.active{
+	background: #D1BE8A;
+	color: #FFFFFF;
+}
+.content .f-con{
+	position: absolute;
+    width: 100%;
+    top: 4.5rem;
+    bottom: 0;
+    padding-bottom: 10px;
+    overflow-y: auto;
+}
+.content .f-con .con-table table{
+	width: 100%;
+	text-align: center;
+}
+.content .f-con .con-table table th{
+	text-align: center;
+	border: 1px solid #F3EFE2;
+	font-size: 12px;
+	color: #999999;
+	height: 22px;
+}
+.content .f-con .con-table table th.blue-bg{
+	background: #779AA7;
+	color: #FFFFFF;
+}
+.content .f-con .con-table table th.red-bg{
+	background: #CE494B;
+	color: #FFFFFF;
+}
+.content .f-con .con-table table td.red-color{
+	color: #CB4B4F;
+}
+.content .f-con .con-table table td{
+	border: 1px solid #F3EFE2;
+	padding: 12px 0;
+	font-size: 14px;
+	color: #666666;
+}
+.content .f-con .con-line{
+	width: 100%;
+	height: 400px;
+}

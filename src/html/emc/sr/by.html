@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../../../images/favicon.ico" />
+		<link rel="bookmark" href="../../../images/favicon.ico" type="image/x-icon"　/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="../../../css/emc/sr/by.css" />
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="mydApp">
+			<div class="header" style="display:none;">
+				<div class="header-content clearfix">
+					<!--<div class="header-left" v-on:click="goBack">
+						返回
+					</div>-->
+					<div class="header-middle">
+						<span>表扬次数</span>
+					</div>
+					<div class="header-right">
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="f-title">
+					<div class="title-tip clearfix">
+						<span>表扬次数</span><span class="title-num" v-html="reportData.VerySatisfied"></span>
+					</div>
+				</div>
+				<div class="f-con">
+					<ul class="con-card clearfix"><li tgType="1" v-on:click="toLink">
+							<div class="num" v-cloak>{{byxNum}}<span class="unit">次</span></div>
+							<div class="name">表扬信</div>
+						</li><li tgType="2" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.VerySatisfied}}<span class="unit">次</span></div>
+							<div class="name">非常满意</div>
+						</li><li style="box-shadow: none;"></li><li tgType="3" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.WEEK}}<span class="unit">次</span></div>
+							<div class="name">本周表扬</div>
+						</li><li tgType="4" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.MONTH}}<span class="unit">次</span></div>
+							<div class="name">本月表扬</div>
+						</li><li tgType="5" v-on:click="toLink">
+							<div class="num" v-cloak>{{reportData.YEAR}}<span class="unit">次</span></div>
+							<div class="name">本年表扬</div>
+						</li></ul>
+					<div class="c-floor c-f-1" style="display: none;">
+						<div class="c-f-title">表扬类型</div>
+						<div id="pie1" class="c-f-pie"></div>
+					</div>
+					<div class="c-floor c-f-2">
+						<div class="c-f-title">表扬汇总</div>
+						<div class="c-f-table">
+							<table>
+								<tr>
+									<th style="width: 19%">分公司</th>
+									<th class="blue-bg" style="width: 27%">表扬信</th>
+									<th class="blue-bg" style="width: 27%">非常满意</th>
+									<th class="blue-bg" style="width: 27%">表扬总次数</th>
+								</tr>
+								<tr v-for="report in reportList">
+									<th v-cloak>{{report.ORGNAME}}</th>
+									<td v-cloak type="1" :cId="report.CompanyID" @click="toProList">{{report.CommendLetter}}</td>
+									<td v-cloak type="2" :cId="report.CompanyID" @click="toProList">{{report.VerySatisfied}}</td>
+									<td v-cloak type="3" :cId="report.CompanyID" @click="toProList">{{report.CommendNum}}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/echarts/echarts.min.js"></script>
+	<script type="text/javascript" src="../../../../lib/util.js" ></script>
+	<script type="text/javascript" src="../../../js/emc/sr/by.js"></script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../../../images/favicon.ico" />
+		<link rel="bookmark" href="../../../images/favicon.ico" type="image/x-icon"　/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="../../../css/emc/sr/xm.css" />
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="mydApp">
+			<div class="header" style="display:none;">
+				<div class="header-content clearfix">
+					<!--<div class="header-left" v-on:click="goBack">
+						返回
+					</div>-->
+					<div class="header-middle">
+						<span>项目个数</span>
+					</div>
+					<div class="header-right">
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="f-title">
+					<div class="title-tip clearfix">
+						<span>项目个数</span><span class="title-num" v-html="totalNum"></span>
+					</div>
+				</div>
+				<ul class="f-tap">
+					<li v-on:click="changeTap" type="1" class="active">表单</li><li v-on:click="changeTap" type="2">柱状图</li>
+				</ul>
+				<div class="f-con">
+					<div class="con-table">
+						<table class="table-title clearfix">
+							<th style="width: 20%;">分公司</th>
+							<th style="width: 20%;" class="blue-bg">项目总数</th>
+							<th style="width: 20%;" class="blue-bg">调查项目</th>
+							<th style="width: 20%;" class="blue-bg">异常项目</th>
+							<th style="width: 20%;" class="blue-bg">调查覆盖率</th>
+						</table>
+						<div class="table-content">
+							<table>
+								<tr v-for="report in reportList">
+									<th style="width: 20%;" v-cloak>{{report.ORGNAME}}</th>
+									<td style="width: 20%;" v-cloak type="1" :cId="report.CompanyID" @click="toProList">{{report.ProjectTotal}}</td>
+									<td style="width: 20%;" v-cloak type="2" :cId="report.CompanyID" @click="toProList">{{report.InvestigateProject}}</td>
+									<td style="width: 20%;" v-cloak type="3" :cId="report.CompanyID" @click="toProList">{{report.Abnormal}}</td>
+									<td style="width: 20%;" v-cloak>{{report.Percent.toFixed(2)}}%</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div id="line" class="con-line">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/echarts/echarts.min.js"></script>
+	<script type="text/javascript" src="../../../../lib/util.js" ></script>
+	<script type="text/javascript" src="../../../js/emc/sr/xm.js"></script>
+</html>

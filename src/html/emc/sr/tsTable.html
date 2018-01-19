@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../../../images/favicon.ico" />
+		<link rel="bookmark" href="../../../images/favicon.ico" type="image/x-icon"　/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../../../css/base.css" />
+		<link rel="stylesheet" href="../../../css/emc/sr/tsTable.css" />
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="mydApp">
+			<div class="header">
+				<div class="header-content clearfix">
+					<!--<div class="header-left" v-on:click="goBack">
+						返回
+					</div>-->
+					<div class="header-middle">
+						<span>异常解决率</span>
+					</div>
+					<div class="header-right">
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="f-title">
+					<div class="title-tip clearfix">
+						<span>异常次数</span><span class="title-num" v-html="totalNum"></span>
+					</div>
+				</div>
+				<div class="f-con">
+					<div class="c-floor c-f-1">
+						<div class="c-f-table">
+							<table class="table-title">
+								<tr>
+									<th style="width: 20%">分公司</th>
+									<th class="blue-bg" style="width: 20%">异常次数</th>
+									<th class="blue-bg" style="width: 20%">已解决</th>
+									<th class="blue-bg" style="width: 20%">未解决</th>
+									<th class="blue-bg" style="width: 20%">解决率</th>
+								</tr>
+							</table>
+							<div class="table-content">
+								<table>
+									<tr v-for="report in reportList">
+										<th style="width: 20%" v-cloak>{{report.ORGNAME}}</th>
+										<td style="width: 20%" v-cloak type="1" :cId="report.CompanyID" @click="toProList">{{report.ComplaintNum}}</td>
+										<td style="width: 20%" v-cloak type="2" :cId="report.CompanyID" @click="toProList">{{report.Resolved}}</td>
+										<td style="width: 20%" v-cloak type="3" :cId="report.CompanyID" @click="toProList">{{report.Unsolved}}</td>
+										<td style="width: 20%" v-cloak>{{report.ResolvedPercent.toFixed(2)}}%</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/echarts/echarts.min.js"></script>
+	<script type="text/javascript" src="../../../../lib/util.js" ></script>
+	<script type="text/javascript" src="../../../js/emc/sr/tsTable.js"></script>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="shortcut icon" href="../../../images/favicon.ico"/>
+		<link rel="bookmark" href="../../../images/favicon.ico" type="image/x-icon"/>
+		<title>金螳螂质量满意度-中国装饰行业持续领跑者</title>
+		<link rel="stylesheet" href="../../../css/base.css"/>
+		<link rel="stylesheet" href="../../../css/emc/sr/list.css"/>
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+	<div id="mydApp" class="myd-con">
+		<div class="header">
+			<div class="header-content clearfix">
+				<!--<div class="header-left">
+					<img src="../../../images/emc/list/return.png">
+					<span v-on:click="goBack">返回</span>
+				</div>-->
+				<div class="header-middle">
+					<span>待处理</span>
+				</div>
+				<div class="header-right">
+					<img src="../../../images/emc/list/info.png">
+					<img  v-on:click="searchProject" src="../../../images/emc/list/search.png" >
+				</div>
+				<div class="header-search clearfix">
+					<div class="search-left">
+						<div v-on:click="searchPj"><img src="../../../images/emc/list/search.png"></div>
+						<div class="search-input"><input placeholder="输入调查编号" onfocus="this.placeholder=''" onblur="this.placeholder='输入调查编号'"></div>
+						<div v-on:click="searchDelete"><img src="../../../images/emc/list/delete.png"></div>
+					</div>
+					<div class="search-right" v-on:click="cancelSearch">
+						<span>取消</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--tab标签-->
+		<div class="tab">
+			<div class="tab-content clearfix">
+				<div class="tab-first">
+					<span>现代城B区四季酒店之L9层项目1111</span>
+				</div>
+				<div class="tab-second clearfix">
+					<span>施工阶段</span>
+					<span>50%</span>
+				</div>
+			</div>
+		</div>
+		<!--content-->
+		<div class="detail">
+			<div class="detail-content">
+				<div class="detail-item line-wrapper" v-for="message in listInfo" v-on:click="enterDetail" v-bind:satisId="message.Satisfaction_Id">
+					<div class="line-scroll-wrapper clearfix">
+						<div class="line-normal-wrapper" typeid="0">
+							<div class="detail-top clearfix">
+								<div class="detail-left clearfix">
+									<span>{{message.Satisfaction_Code}}</span>
+									<span v-if="message.Approve_Status==3"><img src="../../../images/emc/list/state3.png"></span>
+									<span v-if="message.Approve_Status==1"><img src="../../../images/emc/list/state1.png"></span>
+									<span v-if="message.Approve_Status==5"><img src="../../../images/emc/list/state5.png"></span>
+									<span v-if="message.Approve_Status==4"><img src="../../../images/emc/list/state4.png"></span>
+								</div>
+								<template  v-if="status!=1">
+									<div class="detail-right fraction clearfix">
+										<span>{{message.Result}}</span>
+										<span>分</span>
+									</div>
+								</template>
+								<template  v-if="status==1">
+									<div class="resend clearfix">
+										<span>重发</span>
+									</div>
+								</template>
+							</div>
+							<div class="detail-bottom clearfix">
+								<div class="detail-left clearfix">
+									<template v-if="message.Progress<100">
+										<span>施工阶段调查</span>
+									</template>
+									<template v-if="message.Progress==100">>
+										<span>竣工阶段调查</span>
+									</template>
+									<span>{{message.Progress}}%</span>
+									<span>张三</span>
+									<span v-if="message.Source_Type==1"><img src="../../../images/emc/list/way1.png"></span>
+									<span v-if="message.Source_Type==2"><img src="../../../images/emc/list/way2.png"></span>
+									<span v-if="message.Source_Type==3"><img src="../../../images/emc/list/way3.png"></span>
+								</div>
+								<template v-if="status==3||status==0">
+									<div class="detail-right time1 clearfix">
+										<span>07-01</span>
+									</div>
+								</template>
+								<template v-if="status==1">
+									<div class="detail-right time2">
+										<span><img src="../../../images/pm/list/time1.png"></span>
+										<span>已发出3天</span>
+									</div>
+								</template>
+								<template v-if="status==2">
+									<div class="detail-right time3">
+										<span><img src="../../../images/pm/list/time1.png"></span>
+										<span>延期3天</span>
+									</div>
+								</template>
+							</div>
+						</div>
+						<div class="line-btn-delete">删除</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--loading-->
+		<div class="loading"></div>
+
+	</div>
+	<script type="text/javascript" src="../../../../lib/jquery/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/vue/dist/vue-resource.min.js" ></script>
+	<script type="text/javascript" src="../../../../lib/util.js" ></script>
+	<script type="text/javascript" src="../../../js/emc/sr/list.js"></script>
+	</body>
+
+</html>
